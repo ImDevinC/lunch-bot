@@ -1,0 +1,5 @@
+.vscode/*
+function.zip
+package/*/*
+**/terraform.tfstate*
+**/.terraform
