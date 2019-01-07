@@ -3,3 +3,4 @@ function.zip
 package/*/*
 **/terraform.tfstate*
 **/.terraform
+vars.tfvars
