@@ -32,7 +32,7 @@ def parse_station(raw_station):
         return None, None, None
     entree = details[0].get_text().strip()
     # calories = details[1].get_text().strip()
-    return {'title': entree, 'title_link': URL_MENU, 'text': side}
+    return {'title': entree, 'text': side}
 
 
 def parse_daily_menu(raw_column):
@@ -74,7 +74,6 @@ def get_todays_menu(day_of_week):
         return full_menu[day_of_week]
     else:
         return {'text': 'No menu items available today'}
-
 
 def get_day_of_week():
     tz = pytz.timezone('US/Pacific')
@@ -141,10 +140,11 @@ def lambda_handler(event, context):
     if None == menu:
         menu = [{
             'title': 'Failed to get menu options',
-            'title_link': URL_MENU,
             'text': 'There was an error retrieving the menu options, please try again later',
             'color': 'danger'
         }]
+
+    menu.append({'title': 'Click here for the full menu', 'title_link': URL_MENU})
     return {
         'statusCode': 200,
         'body': json.dumps({'text': 'Todays menu options',
